@@ -20,10 +20,10 @@ class allBookMetadataExporter extends BookMetadataExporter {
     public void export(String Filetype, PrintStream stream) {
         switch (Filetype) {
             case "CSV":
-                stream.println("----- CSV File -----" + "\n" + CSVFormatter.getMetadataString());
+                stream.println("----- CSV File -----"+"\n" + CSVFormatter.getMetadataString());
                 break;
             case "JSON":
-                stream.println("----- Json File -----"+"\n"+JSONFormatter.getMetadataString());
+                stream.println("----- JSON File -----"+"\n"+JSONFormatter.getMetadataString());
                 break;
             case "XML":
                 stream.println("----- XML File -----"+"\n"+XMLFormatter.getMetadataString());
