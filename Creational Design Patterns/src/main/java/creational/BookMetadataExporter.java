@@ -5,50 +5,44 @@ import java.io.IOException;
 import java.io.PrintStream;
 
 public abstract class BookMetadataExporter extends BookCollection {
-    public abstract void export(PrintStream stream);
-    public abstract void add(Book b);
+    public abstract void export(String Filetype,PrintStream stream);
+    public abstract void add(String Filetype,Book b);
 }
 
-class CSVBookMetadataExporter extends BookMetadataExporter {
+class allBookMetadataExporter extends BookMetadataExporter {
     CSVBookMetadataFormatter CSVFormatter = new CSVBookMetadataFormatter();
-    CSVBookMetadataExporter() throws IOException {
+    JSONBookMetadataFormatter JSONFormatter = new JSONBookMetadataFormatter();
+    XMLBookMetadataFormatter XMLFormatter = new XMLBookMetadataFormatter();
+    allBookMetadataExporter() throws IOException, ParserConfigurationException {
     }
 
     @Override
-    public void export(PrintStream stream) {
-        stream.println("\n"+"----- CSV File -----"+"\n"+CSVFormatter.getMetadataString());
-    }
-    @Override
-    public void add(Book b) {
-        CSVFormatter.append(b);
-    }
-}
-
-class JSONBookMetadataExporter extends BookMetadataExporter {
-    BookMetadataFormatter JSONFormatter = new JSONBookMetadataFormatter();
-    JSONBookMetadataExporter() throws IOException {
-    }
-
-    @Override
-    public void export(PrintStream stream) {
-        stream.println("----- Json File -----"+"\n"+JSONFormatter.getMetadataString()+"\n");
-    }
-    @Override
-    public void add(Book b) {
-        JSONFormatter.append(b);
-    }
-}
-class XMLBookMetadataExporter extends BookMetadataExporter {
-    BookMetadataFormatter XMLFormatter = new XMLBookMetadataFormatter();
-    XMLBookMetadataExporter() throws ParserConfigurationException {
+    public void export(String Filetype, PrintStream stream) {
+        switch (Filetype) {
+            case "CSV":
+                stream.println("----- CSV File -----" + "\n" + CSVFormatter.getMetadataString());
+                break;
+            case "JSON":
+                stream.println("----- Json File -----"+"\n"+JSONFormatter.getMetadataString());
+                break;
+            case "XML":
+                stream.println("----- XML File -----"+"\n"+XMLFormatter.getMetadataString());
+                break;
+        }
     }
 
     @Override
-    public void export(PrintStream stream) {
-        stream.println("----- XML File -----"+"\n"+XMLFormatter.getMetadataString());
-    }
-    @Override
-    public void add(Book b) {
-        XMLFormatter.append(b);
+    public void add(String Filetype,Book b) {
+        switch (Filetype) {
+            case "CSV":
+                CSVFormatter.append(b);
+                break;
+            case "JSON":
+                JSONFormatter.append(b);
+                break;
+            case "XML":
+                XMLFormatter.append(b);
+                break;
+        }
     }
 }

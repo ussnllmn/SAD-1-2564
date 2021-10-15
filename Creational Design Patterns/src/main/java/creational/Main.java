@@ -7,7 +7,7 @@ public class Main {
 
     public static void main(String[] args) throws ParserConfigurationException, IOException {
 
-     // Current usage
+        // Current usage
      /* BookMetadataFormatter formatter = null;
         try {
             formatter = BookMetadataFormatterFactory.getBookMetadataFormatter(BookMetadataFormatterFactory.Format.CSV);
@@ -21,23 +21,12 @@ public class Main {
         }
      */
 
-     // Expected usage
-     // ---- CSV File -----
-        BookMetadataExporter csvExporter = new CSVBookMetadataExporter();
-        csvExporter.add(TestData.dinosaurBook);
-        csvExporter.add(TestData.dragonBook);
-        csvExporter.export(System.out);
-
-     // ---- JSON File -----
-        BookMetadataExporter jsonExporter = new JSONBookMetadataExporter();
-        jsonExporter.add(TestData.dinosaurBook);
-        jsonExporter.add(TestData.dragonBook);
-        jsonExporter.export(System.out);
-
-     // ---- XML File -----
-        BookMetadataExporter xmlExporter = new XMLBookMetadataExporter();
-        xmlExporter.add(TestData.dinosaurBook);
-        xmlExporter.add(TestData.dragonBook);
-        xmlExporter.export(System.out);
+        // Expected usage
+        // ---- Edit file type to change type of file-----
+        String Filetype = "CSV";
+        BookMetadataExporter Exporter = new allBookMetadataExporter();
+        Exporter.add(Filetype,TestData.dinosaurBook);
+        Exporter.add(Filetype,TestData.dragonBook);
+        Exporter.export(Filetype, System.out);
     }
 }
