@@ -19,7 +19,7 @@ public class HealthcareWorkerTeam implements HealthcareServiceable{
     public double getPrice() {
         double totalPrice=0;
         for(HealthcareServiceable member : members){
-            totalPrice += member.getPrice();
+            totalPrice+=member.getPrice();
         }
         return totalPrice;
     }
