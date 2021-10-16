@@ -21,9 +21,9 @@ public class HealthcareWorkerTeam implements HealthcareServiceable{
 
     @Override
     public double getPrice() {
-        double totalPrice=0;
+        double totalPrice = 0;
         for(HealthcareServiceable memberPrice : members){
-            totalPrice+=memberPrice.getPrice();
+            totalPrice += memberPrice.getPrice();
         }
         return totalPrice;
     }
