@@ -9,10 +9,10 @@ public abstract class HealthcareWorkerDecorator extends HealthcareWorker {
     }
 
     public void service() {
-        this.worker.service();
+        worker.service();
     }
 
     public double getPrice() {
-        return this.worker.getPrice();
+        return worker.getPrice();
     }
 }
