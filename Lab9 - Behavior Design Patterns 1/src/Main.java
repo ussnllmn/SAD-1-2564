@@ -13,17 +13,14 @@ public class Main {
         publisher.subscribe(symbolSubscriber);
 
         boolean loopInput = true;
-        while (loopInput) {
+        do {
             Scanner input = new Scanner(System.in);
             System.out.print("Enter text : ");
             String text = input.nextLine();
             System.out.println("From input text : " + text);
             publisher.publish(text);
         }
-        Scanner input = new Scanner(System.in);
-        System.out.print("Enter text : ");
-        String text = input.nextLine();
-        System.out.println("From input text : "+text);
-        publisher.publish(text);
+        while (loopInput);
+        System.exit(0);
     }
 }
