@@ -18,7 +18,7 @@ public abstract class StringSubscriber implements Flow.Subscriber<String> {
                 Writer.close();
             }
         } catch (IOException e) {
-            System.out.println("An error occurred.");
+            System.out.println("An error occurred in PrintToFile.");
             e.printStackTrace();
         }
     }
@@ -37,7 +37,7 @@ public abstract class StringSubscriber implements Flow.Subscriber<String> {
 
     @Override
     public void onError(Throwable throwable) {
-        System.out.println("An error occurred.");
+        System.out.println("An error occurred in StringSubscriber.");
     }
 
     @Override
