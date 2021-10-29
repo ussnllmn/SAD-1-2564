@@ -1,6 +1,8 @@
+import java.io.IOException;
 import java.util.concurrent.Flow;
 
 public class AlphabetSubscriber extends StringSubscriber{
+
     @Override
     public void onSubscribe(Flow.Subscription subscription) {
         super.onSubscribe(subscription);
@@ -18,6 +20,11 @@ public class AlphabetSubscriber extends StringSubscriber{
 
     @Override
     public void onComplete() {
-        super.onComplete();
+        String text = super.text;
+        try {
+            PrintToFile(text, "AlphabetSubscriber.txt");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
