@@ -21,6 +21,7 @@ public class SymbolSubscriber extends StringSubscriber{
     @Override
     public void onComplete() {
         String text = super.text;
+        super.text = "";
         try {
             PrintToFile(text, "SymbolSubscriber.txt");
         } catch (IOException e) {

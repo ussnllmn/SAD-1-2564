@@ -21,6 +21,7 @@ public class NumberSubscriber extends StringSubscriber{
     @Override
     public void onComplete() {
         String text = super.text;
+        super.text = "";
         try {
             PrintToFile(text, "NumberSubscriber.txt");
         } catch (IOException e) {
