@@ -27,7 +27,7 @@ public class StringPublisher implements Flow.Publisher<String> {
                 Pattern pattern = Pattern.compile("[a-zA-Z]");
                 Matcher matcher = pattern.matcher(text);
                 if (matcher.find()){
-                    System.out.format("Found \"%s\" in Text Write to AlphabetSubscriber.txt"+"\n", matcher.group());
+                    System.out.format("Found \"%s\" in Text Write into AlphabetSubscriber.txt"+"\n", matcher.group());
                     stringSubscription.set_Data(text);
                 }
             }
@@ -36,7 +36,7 @@ public class StringPublisher implements Flow.Publisher<String> {
                 Pattern pattern = Pattern.compile("\\d");
                 Matcher matcher = pattern.matcher(text);
                 if (matcher.find()) {
-                    System.out.format("Found \"%s\" in Text Write to NumberSubscriber.txt"+"\n", matcher.group());
+                    System.out.format("Found \"%s\" in Text Write into NumberSubscriber.txt"+"\n", matcher.group());
                     stringSubscription.set_Data(text);
                 }
             }
@@ -45,7 +45,7 @@ public class StringPublisher implements Flow.Publisher<String> {
                 Pattern pattern = Pattern.compile("\\W");
                 Matcher matcher = pattern.matcher(text);
                 if (matcher.find()){
-                    System.out.format("Found \"%s\" in Text Write to SymbolSubscriber.txt"+"\n", matcher.group());
+                    System.out.format("Found \"%s\" in Text Write into SymbolSubscriber.txt"+"\n", matcher.group());
                     stringSubscription.set_Data(text);
                 }
             }

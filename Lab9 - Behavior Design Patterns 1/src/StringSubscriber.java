@@ -4,18 +4,18 @@ import java.io.IOException;
 import java.util.concurrent.Flow;
 
 public abstract class StringSubscriber implements Flow.Subscriber<String> {
-    public StringSubscription stringSubscription;
-    public String text;
+    private StringSubscription stringSubscription;
+    public String text="";
 
-    public void PrintToFile(String text,String file) throws IOException {
+    public void PrintToFile(String item, String file) throws IOException {
         try {
             File myObj = new File(file);
             if (myObj.createNewFile()) {
                 System.out.println("File created: " + myObj.getName());
-            } else {
-                FileWriter myWriter = new FileWriter("filename.txt");
-                myWriter.write(text);
-                myWriter.close();
+            }else{
+                FileWriter Writer = new FileWriter(file,true);
+                Writer.write(item);
+                Writer.close();
             }
         } catch (IOException e) {
             System.out.println("An error occurred.");
@@ -32,7 +32,7 @@ public abstract class StringSubscriber implements Flow.Subscriber<String> {
     @Override
     public void onNext(String item) {
         this.text += item;
-        stringSubscription.request(1);
+        this.stringSubscription.request(1);
     }
 
     @Override
