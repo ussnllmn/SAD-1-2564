@@ -1,54 +1,49 @@
+import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Flow;
 
 public class StringSubscription implements Flow.Subscription {
 
-    private StringSubscriber my_subscriber;
+    private final ExecutorService executor;
+    private StringSubscriber stringSubscriber;
     private Object class_type;
-    private boolean check_request = false;
-    private String Data = "";
+    private String text = "";
 
-    public void get_Subscriber(StringSubscriber my_subscriber){
-        this.my_subscriber = my_subscriber;
+    public StringSubscription(ExecutorService executor) {
+        this.executor = executor;
+    }
+
+    public void get_Subscriber(StringSubscriber stringSubscriber){
+        this.stringSubscriber = stringSubscriber;
     }
 
     @Override
     public void request(long n) {
-
-        if(!this.check_request){
-            this.check_request = true;
+        if (this.text == "")
+            this.stringSubscriber.onComplete();
+        else {
+            String Buffer = this.text.substring(0,this.text.length() < (int)n? this.text.length():(int)n);
+            this.text = this.text.substring(this.text.length() < (int)n? this.text.length():(int)n, this.text.length());
+            this.stringSubscriber.onNext(Buffer);
         }
-        if (this.Data == "") {
-            this.my_subscriber.onComplete();
-            this.check_request = true;
-        } else {
-            String Buffer = this.Data.substring(0,this.Data.length() < (int)n? this.Data.length():(int)n);
-            //System.out.println(Buffer);
-            this.Data = this.Data.substring(this.Data.length() < (int)n? this.Data.length():(int)n, this.Data.length());
-            this.my_subscriber.onNext(Buffer);
-        }
-
     }
 
     @Override
     public void cancel() {
-
-    }
-    public Object getClass_type(){
-        return this.class_type;
+        System.out.println("Cancel.");
     }
 
     public void setClass_type(Object type){
         this.class_type = type;
     }
 
+    public Object getClass_type(){
+        return this.class_type;
+    }
 
-
-    public void set_Data(String Data){
-        this.Data = Data+"\n";
-
-        if(this.check_request){
-            this.my_subscriber.onNext("");
-        }
-
+    public void send(String text){
+        this.text = text+"\n";
+        executor.execute(() -> {
+            stringSubscriber.onNext("");
+        });
     }
 }
