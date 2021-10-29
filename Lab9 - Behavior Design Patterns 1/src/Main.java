@@ -12,12 +12,12 @@ public class Main {
         publisher.subscribe(numberSubscriber);
         publisher.subscribe(symbolSubscriber);
 
-        while (true) {
+        //while (true) {
             Scanner input = new Scanner(System.in);
-            System.out.println("Enter text : ");
+            System.out.print("Enter text : ");
             String text = input.nextLine();
             System.out.println("From input text : "+text);
-
-        }
+            publisher.publish(text);
+       // }
     }
 }

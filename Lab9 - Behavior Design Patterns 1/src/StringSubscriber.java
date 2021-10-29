@@ -9,7 +9,7 @@ public abstract class StringSubscriber implements Flow.Subscriber<String> {
 
     public void PrintToFile(String text,String file) throws IOException {
         try {
-            File myObj = new File("filename.txt");
+            File myObj = new File(file);
             if (myObj.createNewFile()) {
                 System.out.println("File created: " + myObj.getName());
             } else {
