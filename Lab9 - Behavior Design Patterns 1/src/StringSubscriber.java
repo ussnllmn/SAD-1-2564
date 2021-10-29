@@ -4,8 +4,8 @@ import java.io.IOException;
 import java.util.concurrent.Flow;
 
 public abstract class StringSubscriber implements Flow.Subscriber<String> {
-    private StringSubscription stringSubscription;
-    private String text;
+    public StringSubscription stringSubscription;
+    public String text;
 
     public void PrintToFile(String text,String file) throws IOException {
         try {
@@ -25,21 +25,23 @@ public abstract class StringSubscriber implements Flow.Subscriber<String> {
 
     @Override
     public void onSubscribe(Flow.Subscription subscription) {
-
+        stringSubscription = (StringSubscription) subscription;
+        subscription.request(1);
     }
 
     @Override
     public void onNext(String item) {
-
+        this.text += item;
+        stringSubscription.request(1);
     }
 
     @Override
     public void onError(Throwable throwable) {
-
+        System.out.println("An error occurred.");
     }
 
     @Override
     public void onComplete() {
-
+        System.out.println("Complete.");
     }
 }
