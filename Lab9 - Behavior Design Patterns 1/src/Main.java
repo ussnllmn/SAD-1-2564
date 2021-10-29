@@ -12,12 +12,18 @@ public class Main {
         publisher.subscribe(numberSubscriber);
         publisher.subscribe(symbolSubscriber);
 
-        while (true) {
+        boolean loopInput = true;
+        while (loopInput) {
             Scanner input = new Scanner(System.in);
             System.out.print("Enter text : ");
             String text = input.nextLine();
-            System.out.println("From input text : "+text);
+            System.out.println("From input text : " + text);
             publisher.publish(text);
         }
+        Scanner input = new Scanner(System.in);
+        System.out.print("Enter text : ");
+        String text = input.nextLine();
+        System.out.println("From input text : "+text);
+        publisher.publish(text);
     }
 }
