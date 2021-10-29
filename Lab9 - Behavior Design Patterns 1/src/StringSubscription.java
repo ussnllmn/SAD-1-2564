@@ -29,7 +29,7 @@ public class StringSubscription implements Flow.Subscription {
 
     @Override
     public void cancel() {
-        System.out.println("Cancel.");
+        System.out.println("Cancel in StringSubscription.");
     }
 
     public void setClass_type(Object type){
