@@ -5,7 +5,7 @@ import java.util.concurrent.Flow;
 
 public abstract class StringSubscriber implements Flow.Subscriber<String> {
     private StringSubscription stringSubscription;
-    public String text="";
+    public String text = "";
 
     public void PrintToFile(String item, String file) throws IOException {
         try {
